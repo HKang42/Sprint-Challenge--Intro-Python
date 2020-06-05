@@ -102,12 +102,37 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
-def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
+def cityreader_stretch(lat1, lon1, lat2, lon2, cities):
   # within will hold the cities that fall within the specified region
   within = []
+  
+  highest_lat = max(float(lat1), float(lat2))
+  lowest_lat = min(float(lat1), float(lat2))
+
+  highest_lon = max(float(lon1), float(lon2))
+  lowest_lon = min(float(lon1), float(lon2))
+
+  print(highest_lat, highest_lon)
+  print(lowest_lat, lowest_lon)
+
+  for city in cities:
+    if lowest_lat <= city.lat <= highest_lat and lowest_lon <= city.lon <= highest_lon:
+      within.append(city)
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
   return within
+
+
+lat1, lon1 = input("Enter lat1,lon1: ").split(",")
+lat2, lon2 = input("Enter lat2,lon2: ").split(",")
+
+# code for testing the example output
+#lat1, lon1 = "45,-100".split(",")
+#lat2, lon2 = "32,-120".split(",")
+
+inside = cityreader_stretch(lat1, lon1, lat2, lon2, cities)
+for city in inside:
+  print(city.name, city.lat, city.lon)
