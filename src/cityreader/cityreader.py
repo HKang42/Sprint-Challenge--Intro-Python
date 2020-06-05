@@ -21,7 +21,7 @@ class City():
 # should not be loaded into a City object.
 
 import csv
-cities = []
+
 def cityreader(cities=[]):
   # TODO Implement the functionality to read from the 'cities.csv' file
   # For each city record, create a new City instance and add it to the 
@@ -43,7 +43,20 @@ def cityreader(cities=[]):
   
   return cities
 
-cities = cityreader(cities)
+"""
+Interesting bug. Despite the cityreader function having a default argument,
+the test file will fail if you do not include an empty list when you call 
+the cityreader function in this file.
+
+In other words, calling only:
+
+cities = cityreader()
+
+will give you the correct output for this file. But the test file will return an error.
+
+"""
+random_list = []
+cities = cityreader(random_list)
 
 """
 i=0
